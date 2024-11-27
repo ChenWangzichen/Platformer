@@ -61,11 +61,7 @@ public class PlayerController : MonoBehaviour
         Vector2 playerInput = new Vector2(Input.GetAxis("Horizontal"), 0);
         MovementUpdate(playerInput);
     }
-    //private void FixedUpdate()
-    //{
-    //    Vector2 playerInput = new Vector2(Input.GetAxis("Horizontal"), 0);
-    //    MovementUpdate(playerInput);
-    //}
+
     public Vector2 currentVelocity;
     private void MovementUpdate(Vector2 playerInput)
     {
@@ -77,7 +73,6 @@ public class PlayerController : MonoBehaviour
             currentVelocity += acceleration * playerInput * Time.deltaTime;
             currentVelocity.x = Mathf.Clamp(currentVelocity.x, -maxSpeed, maxSpeed);
         }
-
         else if (Mathf.Abs(currentVelocity.x) > 0)
         {
             currentVelocity.x =currentVelocity.normalized.x * Mathf.Clamp(Mathf.Abs(currentVelocity.x) - deceleration * Time.deltaTime, 0, maxSpeed);
@@ -99,71 +94,8 @@ public class PlayerController : MonoBehaviour
 
         currentVelocity.y = Mathf.Clamp(currentVelocity.y, -terminalSpeed, initialJumpVelocity);
         
-        
-
         rb.velocity = currentVelocity;
-
         
-        //old movement code{
-        //rb = GetComponent<Rigidbody2D>();
-
-        ////switch between different properties
-        //switch (properties) {
-        //    case MotionProperties.Idle:
-        //        //when players Idle, no moving
-        //        speed = 0;
-        //        //if there's input, start to acceleration
-        //        if (playerInput != Vector2.zero)
-        //        {
-        //            properties = MotionProperties.Acceleration;
-        //        }
-        //            break;
-        //    case MotionProperties.MaxSpeed:
-        //        //MaxSpeed -> player stay at max speed
-        //        speed = maxSpeed;
-        //        //if nothing pressed, start to deceleration
-        //        if (playerInput == Vector2.zero)
-        //        {
-        //            properties = MotionProperties.Deceleration;
-        //            break;
-        //        }
-        //        //make sure player moving direction is same with input
-        //        direction = playerInput.normalized;
-        //            break;
-        //    case MotionProperties.Acceleration:
-        //        //when player at Acceleration, accelerate
-        //        speed += acceleration * Time.deltaTime;
-        //        //if speed reach to max speed, player at MaxSpeed mode.
-        //        if (speed >= maxSpeed)
-        //        {
-        //            properties = MotionProperties.MaxSpeed;
-        //        }
-        //        //if release the button during acceleration, at deceleration mode
-        //        if (playerInput == Vector2.zero)
-        //        {
-        //            properties = MotionProperties.Deceleration;
-        //            break;
-        //        }
-        //        direction = playerInput.normalized;
-        //        break;
-        //    case MotionProperties.Deceleration:
-        //        //decelerate
-        //        speed -= deceleration * Time.deltaTime;
-        //        //when speed - deceleration < 0, player stay
-        //        if (speed < deceleration*Time.deltaTime) 
-        //        {
-        //            properties = MotionProperties.Idle;
-        //        }
-        //        //if there's new input while decelerate, accelerate again.
-        //        if (playerInput != Vector2.zero)
-        //        {
-        //            properties = MotionProperties.Acceleration;
-        //        }
-        //            break;
-        //}
-
-        //    //move the player
-        //    rb.MovePosition(rb.position + speed * direction * Time.deltaTime);
     }
     IEnumerator Fall()
     {

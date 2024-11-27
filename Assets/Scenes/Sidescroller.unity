@@ -1560,8 +1560,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 5
-  accelerationTime: 0.3
+  accelerationTime: 0.4
   decelerationTime: 0.2
+  apexHeight: 3
+  apexTime: 0.5
+  terminalSpeed: 5
+  coyoteTime: 0.3
+  gravity: 1
+  currentVelocity: {x: 0, y: 0}
 --- !u!4 &1433354315
 Transform:
   m_ObjectHideFlags: 0
